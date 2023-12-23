@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1222Lab_DiceRoll</title>
+
+    <style>
+        body {
+            text-align: center;
+            align-items: center;
+            flex-direction: column;
+            display: flex;
+        }
+
+        img {
+            width: 100px;
+            /* 設置圖片的寬度，可以根據需要調整 */
+            height: auto;
+            margin: 5px;
+            /* 設置圖片之間的邊距 */
+            display: inline-block;
+            /* 將圖片設置為內聯塊元素，這樣它們就會在同一行顯示 */
+        }
+
+        .row {
+            display: block;
+            /* 將 .row 設置為區塊元素，這樣它會佔據一整行 */
+        }
+
+        table {
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <form action="#">
+        <button id="roll">Roll Dice</button>
+    </form>
+
+    <div class="row">
+        <img id="die1" src="die1.jpg" alt="blank image">
+        <img id="die2" src="die1.jpg" alt="blank image">
+        <img id="die3" src="die1.jpg" alt="blank image">
+        <img id="die4" src="die1.jpg" alt="blank image">
+        <img id="die5" src="die1.jpg" alt="blank image">
+        <img id="die6" src="die1.jpg" alt="blank image">
+    </div>
+
+    <div class="row">
+        <img id="die7" src="die1.jpg" alt="blank image">
+        <img id="die8" src="die1.jpg" alt="blank image">
+        <img id="die9" src="die1.jpg" alt="blank image">
+        <img id="die10" src="die1.jpg" alt="blank image">
+        <img id="die11" src="die1.jpg" alt="blank image">
+        <img id="die12" src="die1.jpg" alt="blank image">
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Face</th>
+                <th>Percent</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td id="num1">0%</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td id="num2">0%</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td id="num3">0%</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td id="num4">0%</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td id="num5">0%</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td id="num6">0%</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var jpg1, jpg2, jpg3, jpg4, jpg5, jpg6, jpg7, jpg8, jpg9, jpg10, jpg11, jpg12;
+        var rollTime = 0;
+        var face = [0, 0, 0, 0, 0, 0];
+
+        var num1 = document.getElementById("num1");
+        var num2 = document.getElementById("num2");
+        var num3 = document.getElementById("num3");
+        var num4 = document.getElementById("num4");
+        var num5 = document.getElementById("num5");
+        var num6 = document.getElementById("num6");
+
+        start();
+        function start() {
+            var button = document.getElementById("roll");
+            button.addEventListener("click", rollDice);
+            jpg1 = document.getElementById("die1");
+            jpg2 = document.getElementById("die2");
+            jpg3 = document.getElementById("die3");
+            jpg4 = document.getElementById("die4");
+            jpg5 = document.getElementById("die5");
+            jpg6 = document.getElementById("die6");
+            jpg7 = document.getElementById("die7");
+            jpg8 = document.getElementById("die8");
+            jpg9 = document.getElementById("die9");
+            jpg10 = document.getElementById("die10");
+            jpg11 = document.getElementById("die11");
+            jpg12 = document.getElementById("die12");
+        }
+
+        function setImage(dieJpg) {
+            var dieValue = Math.floor(1 + Math.random() * 6);
+            dieJpg.setAttribute("src", "die" + dieValue + ".jpg");
+            dieJpg.setAttribute("alt", "die image with" + dieValue + " spot(s)");
+            rollTime++;
+            face[dieValue - 1]++;
+        }
+
+        function rollDice() {
+            setImage(jpg1);
+            setImage(jpg2);
+            setImage(jpg3);
+            setImage(jpg4);
+            setImage(jpg5);
+            setImage(jpg6);
+            setImage(jpg7);
+            setImage(jpg8);
+            setImage(jpg9);
+            setImage(jpg10);
+            setImage(jpg11);
+            setImage(jpg12);
+            updatePercentages();
+        }
+
+        function updatePercentages() {
+            num1.textContent = ((face[0] / rollTime) * 100).toFixed(2) + "%";
+            num2.textContent = ((face[1] / rollTime) * 100).toFixed(2) + "%";
+            num3.textContent = ((face[2] / rollTime) * 100).toFixed(2) + "%";
+            num4.textContent = ((face[3] / rollTime) * 100).toFixed(2) + "%";
+            num5.textContent = ((face[4] / rollTime) * 100).toFixed(2) + "%";
+            num6.textContent = ((face[5] / rollTime) * 100).toFixed(2) + "%";
+        }
+    </script>
+
+</body>
+
+</html>
